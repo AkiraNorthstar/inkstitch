@@ -197,3 +197,5 @@ class Stroke(EmbroideryElement):
                 patches.append(patch)
 
         return patches
+
+    # def validation_errors(self):

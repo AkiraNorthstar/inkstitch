@@ -1,7 +1,6 @@
 from copy import deepcopy
 import sys
 
-from argparse import ArgumentParser
 from cspsubdiv import cspsubdiv
 import cubicsuperpath
 import simplestyle
@@ -277,13 +276,6 @@ class EmbroideryElement(object):
         return patches
 
     def fatal(self, message):
-        #         parser = ArgumentParser()
-        #         parser.add_argument("--extension")
-        #         my_args, remaining_args = parser.parse_known_args()
-        #
-        #         if my_args.extension == 'explain_validity':
-        #             return
-
         label = self.node.get(INKSCAPE_LABEL)
         id = self.node.get("id")
         if label:
@@ -293,7 +285,8 @@ class EmbroideryElement(object):
 
         # L10N used when showing an error message to the user such as
         # "Some Path (path1234): error: satin column: One or more of the rungs doesn't intersect both rails."
-        print >> sys.stderr, "%s: %s %s" % (name.encode("UTF-8"), _("error:"), message.encode("UTF-8"))
+        error_msg = "%s: %s %s" % (name, _("error:"), message)
+        print >> sys.stderr, "%s" % (error_msg.encode("UTF-8"))
         sys.exit(1)
 
     def validation_errors(self):
